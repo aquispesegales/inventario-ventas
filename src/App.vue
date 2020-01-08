@@ -1,60 +1,62 @@
 <template>
   <v-app>
-    <v-app-bar
-      app
-      color="primary"
-      dark
-    >
-      <div class="d-flex align-center">
-        <v-img
-          alt="Vuetify Logo"
-          class="shrink mr-2"
-          contain
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-logo-dark.png"
-          transition="scale-transition"
-          width="40"
-        />
-
-        <v-img
-          alt="Vuetify Name"
-          class="shrink mt-1 hidden-sm-and-down"
-          contain
-          min-width="100"
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-name-dark.png"
-          width="100"
-        />
-      </div>
-
-      <v-spacer></v-spacer>
-
-      <v-btn
-        href="https://github.com/vuetifyjs/vuetify/releases/latest"
-        target="_blank"
-        text
+    <template>     
+      <v-navigation-drawer
+        fixed
+        app
+        :clipped-left="clipped"
+        :clipped="clipped"
+        v-model="drawer"
+        enable-resize-watcher
+        width="300"
       >
-        <span class="mr-2">Latest Release</span>
-        <v-icon>mdi-open-in-new</v-icon>
-      </v-btn>
-    </v-app-bar>
+        <app-menu></app-menu>
+      </v-navigation-drawer>
+    </template>
+    <template>
+      <!--<v-toolbar dark fixed app color="light-blue darken-4" :clipped-left="clipped">
+        <v-toolbar-title>
+          <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
+        </v-toolbar-title>
+      </v-toolbar>-->
+      <div style="flex-basis: 20%">
+      <v-toolbar  dark fixed app color="light-blue darken-4" :clipped-left="clipped"
+        >
+            <v-app-bar-nav-icon @click="cambiar()"></v-app-bar-nav-icon>
+          <v-toolbar-title>Title</v-toolbar-title>
 
-    <v-content>
-      <HelloWorld/>
-    </v-content>
+            <v-spacer></v-spacer>
+            <v-btn icon class="hidden-xs-only">
+              <v-icon>mdi-magnify</v-icon>
+            </v-btn>
+          </v-toolbar>
+      </div>
+      <v-content>
+        <router-view/>
+      </v-content>
+    </template>
   </v-app>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld';
-
+//import HelloWorld from "./components/HelloWorld";
+import AppMenu from "@/components/shared/AppMenu";
 export default {
-  name: 'App',
+  name: "App",
 
   components: {
-    HelloWorld,
+    
+    AppMenu
   },
 
   data: () => ({
-    //
+    clipped: true,
+    drawer: false
   }),
+  methods:{
+    cambiar(){
+      this.drawer = !this.drawer
+    }
+  }
 };
 </script>
