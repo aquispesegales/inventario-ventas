@@ -20,7 +20,6 @@ export default {
     }
   },
   mounted(){
-    
     this.SetDato("Desde Vuex");
   },
   methods:{
